@@ -5,5 +5,8 @@ D = foreach C generate $0,$1,$3;
 
 E = join D by ($0,$2),B by ($1,$0);
 
-dump E;
+F = group E all;
+G = foreach F generate SIZE(E);
+
+dump G;
 
