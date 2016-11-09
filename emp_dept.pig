@@ -30,7 +30,9 @@ dump first_employ_date;
 The number of employees in each department
 */
 tuples_dept_group = group emp by deptno;
-number_each_dept = foreach tuples_dept_group generate group,COUNT(emp.empno);
+number_each_deptId = foreach tuples_dept_group generate group,COUNT(emp.empno) as num_dept;
+number_each_deptname = join number_each_deptId by group,dept by deptno;
+number_each_dept = foreach number_each_deptname generate number_each_deptId::group,dept::dname,number_each_deptId::num_dept;
 dump number_each_dept;
 
 /*
