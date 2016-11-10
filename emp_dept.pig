@@ -55,10 +55,10 @@ dump salary_each_city;
 The highest paid employee in each department
 */
 dept_group = group emp by deptno;
-max_sal_dept = foreach dept_group generate group,MAX(emp.sal) as max_sal;
-max_sal_dept_name = join dept by deptno,max_sal_dept by group;
-max_sal_each_dept = foreach max_sal_dept_name generate dept::dname,max_sal_dept::max_sal;
-dump max_sal_each_dept;
+max_sal_each_dept = foreach dept_group generate group, MAX(emp.sal) as max_sal;
+max_sal_each_dept1 = join emp by (deptno,sal), max_sal_each_dept by ($0,$1);
+max_sal_emp_each_dept = foreach max_sal_each_dept1 generate max_sal_each_dept::group,emp::ename, emp::sal;
+dump max_sal_emp_each_dept;
 
 /*
 Managers whose subordinates have at least one subordinate
