@@ -1,12 +1,15 @@
 A = load 'roadNet-CA.txt' as (nodeA:chararray, nodeB:chararray);
-/*
-count the frequency of each out-degree value
-*/
+
 B = group A by nodeA;
 C = foreach B generate group,COUNT(A) as freq;
 /*
-count the frequency of each in-degree value
+ the frequency of each degree value
 */
+CC = group C by freq;
+DD = foreach CC generate group,COUNT(C);
+dump DD;
+
+
 D= group A by nodeB;
 E = foreach D generate group,COUNT(A) as freq;
 /*
