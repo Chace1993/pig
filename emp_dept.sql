@@ -11,7 +11,7 @@ select e1.loc,COUNT(*) from (select emp.empno,dept.loc from emp join dept on emp
 /*6.*/
 select e1.loc,AVG(e1.sal) from (select emp.sal,dept.loc from emp join dept on emp.deptno = dept.deptno)as e1 group by e1.loc
 /*7.*/
-select deptno,MAX(sal) from emp group by deptno
+select emp.deptno,emp.empno,emp.sal from(select deptno,max(sal) as max_sal from emp group by deptno) as e1 join emp on emp.deptno=e1.deptno and emp.sal=e1.max_sal;
 /*8.*/
 select * from (select  e1.empno as mgrno,e2.empno as subno from emp as e1 join emp as e2 on e1.empno=e2.mgr where e1.job = 'MANAGER') as e3 join emp as e4 on e3.subno=e4.mgr 
 /*9.*/
