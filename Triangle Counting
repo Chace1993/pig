@@ -1,0 +1,3 @@
+Can you identify one problem with this approach ?
+In step one , if a edge(n1,n2) is parallel to another edge(n3,n4),triad relation (n1,n2,n4) can be a straight line after join operation.
+And then (n5,n6) join (n1,n2,n4) with the conditions n1=n6 and n4=n5 can be a straight line agagin
