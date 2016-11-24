@@ -81,6 +81,7 @@ dump num_emp_each_year;
 The pay grade of each employee
 */
 crossed = cross emp, salgrade;  
-emp_salgrade = filter crossed by losal < sal and sal <=  hisal; emp_salgrade2 = foreach emp_salgrade generate emp::ename, emp::sal as sal, salgrade::grade as grade; 
+emp_salgrade = filter crossed by losal < sal and sal <=  hisal;
+emp_salgrade2 = foreach emp_salgrade generate emp::ename, emp::sal as sal, salgrade::grade as grade; 
 sal_groups = group emp_salgrade2 by grade;
 dump sal_groups;
